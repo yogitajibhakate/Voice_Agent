@@ -1,0 +1,356 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #FCF9F2;
+  --foreground: #7A6C63;
+  --card: #FFFFFF;
+  --card-foreground: #7A6C63;
+  --popover: #FFFFFF;
+  --popover-foreground: #7A6C63;
+  --primary: #E88C15;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FAECE3;
+  --secondary-foreground: #E88C15;
+  --muted: #FAECE3;
+  --muted-foreground: #7A6C63;
+  --accent: #FAECE3;
+  --accent-foreground: #E88C15;
+  --destructive: #EF4444;
+  --border: #F0D5C1;
+  --input: #F0D5C1;
+  --ring: #E88C15;
+  --chart-1: #3B82F6;
+  --chart-2: #10B981;
+  --chart-3: #F59E0B;
+  --chart-4: #6366F1;
+  --chart-5: #EC4899;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #7A6C63;
+  --sidebar-primary: #E88C15;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #FAECE3;
+  --sidebar-accent-foreground: #E88C15;
+  --sidebar-border: #F0D5C1;
+  --sidebar-ring: #E88C15;
+  --cta: #E88C15;
+  --cta-foreground: #FFFFFF;
+  --brand-imprint: none;
+}
+
+.dark {
+  --background: #2E221B;
+  --foreground: #FCF9F2;
+  --card: #3D2D24;
+  --card-foreground: #FCF9F2;
+  --popover: #3D2D24;
+  --popover-foreground: #FCF9F2;
+  --primary: #E88C15;
+  --primary-foreground: #FFFFFF;
+  --secondary: #4A3A31;
+  --secondary-foreground: #FCF9F2;
+  --muted: #4A3A31;
+  --muted-foreground: #B5A8A0;
+  --accent: #4A3A31;
+  --accent-foreground: #FCF9F2;
+  --destructive: #EF4444;
+  --border: #4A3A31;
+  --input: #4A3A31;
+  --ring: #E88C15;
+  --chart-1: #3B82F6;
+  --chart-2: #10B981;
+  --chart-3: #F59E0B;
+  --chart-4: #6366F1;
+  --chart-5: #EC4899;
+  --sidebar: #241A14;
+  --sidebar-foreground: #FCF9F2;
+  --sidebar-primary: #E88C15;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #3A2C23;
+  --sidebar-accent-foreground: #FCF9F2;
+  --sidebar-border: #3A2C23;
+  --sidebar-ring: #E88C15;
+  --cta: #E88C15;
+  --cta-foreground: #FFFFFF;
+  --brand-imprint: none;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #4A3123;
+    @apply font-semibold;
+  }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark h5,
+  .dark h6 {
+    color: #FCF9F2;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+@layer components {
+
+  /* CSS-only audio-waveform motif for the auth brand panel. A row of bars that
+     breathe at staggered intervals, evoking live voice. Decorative only. */
+  .auth-waveform {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    height: 3.5rem;
+  }
+
+  .auth-waveform span {
+    display: block;
+    width: 0.25rem;
+    border-radius: 9999px;
+    background: linear-gradient(to top,
+        color-mix(in oklch, var(--cta) 70%, transparent),
+        color-mix(in oklch, var(--cta) 25%, transparent));
+    animation: auth-wave 1.4s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .auth-waveform span:nth-child(1) {
+    animation-delay: 0s;
+    height: 35%;
+  }
+
+  .auth-waveform span:nth-child(2) {
+    animation-delay: 0.15s;
+    height: 65%;
+  }
+
+  .auth-waveform span:nth-child(3) {
+    animation-delay: 0.3s;
+    height: 100%;
+  }
+
+  .auth-waveform span:nth-child(4) {
+    animation-delay: 0.45s;
+    height: 55%;
+  }
+
+  .auth-waveform span:nth-child(5) {
+    animation-delay: 0.6s;
+    height: 80%;
+  }
+
+  .auth-waveform span:nth-child(6) {
+    animation-delay: 0.3s;
+    height: 45%;
+  }
+
+  .auth-waveform span:nth-child(7) {
+    animation-delay: 0.15s;
+    height: 70%;
+  }
+
+  .auth-waveform span:nth-child(8) {
+    animation-delay: 0s;
+    height: 30%;
+  }
+
+  @keyframes auth-wave {
+
+    0%,
+    100% {
+      transform: scaleY(0.4);
+      opacity: 0.7;
+    }
+
+    50% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .auth-waveform span {
+      animation: none;
+    }
+  }
+
+  /* Matte app background — flat charcoal (dark) / soft paper (light), NO
+     gradients, with one subtle graphic in BOTH themes: the giant faded
+     "dograh" wordmark (--brand-imprint, defined in :root/.dark) pinned to
+     the bottom of the viewport, echoing the dograh.com footer. */
+  .app-surface {
+    background-color: var(--background);
+    background-image: var(--brand-imprint);
+    background-size: min(68vw, 980px) auto;
+    background-position: calc(50% + 135px) calc(100% - 24px);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  @media (max-width: 767px) {
+    .app-surface {
+      background-position: center calc(100% - 24px);
+    }
+  }
+
+  .dark .app-surface {
+    background-color: var(--background);
+  }
+
+  .auth-imprint {
+    background-image: var(--brand-imprint);
+    background-size: min(86%, 920px) auto;
+    background-position: center calc(100% - 32px);
+    background-repeat: no-repeat;
+  }
+}
+
+.app-sidebar-dock [data-slot="sidebar-inner"] {
+  border-radius: 1.25rem;
+  overflow: hidden;
+}
+
+.dark .app-sidebar-dock [data-slot="sidebar-inner"] {
+  border-color: rgb(255 255 255 / 0.1);
+  background-color: oklch(0.18 0.002 80);
+  box-shadow:
+    inset 1px 0 0 rgb(255 255 255 / 0.1),
+    inset 3px 0 6px -4px rgb(255 255 255 / 0.08),
+    0 24px 50px -14px rgb(0 0 0 / 0.85);
+}
+
+.card-weave {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M0 0l12 12M12 0L0 12' stroke='%23000000' stroke-opacity='.015' fill='none'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.dark .card-weave {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M0 0l12 12M12 0L0 12' stroke='%23ffffff' stroke-opacity='.01' fill='none'/%3E%3C/svg%3E");
+  border-top-color: rgb(255 255 255 / 0.2);
+}
+
+.dark .lead-form-slab {
+  background-color: oklch(0.215 0 0);
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+.lead-form-underline label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.lead-form-underline :is(input, textarea)::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.14;
+}
+
+.lead-form-underline [data-slot="select-trigger"][data-placeholder] {
+  color: color-mix(in oklab, var(--muted-foreground) 17%, transparent);
+}
+
+.lead-form-underline :is(input, textarea, [data-slot="select-trigger"]) {
+  background-color: transparent;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.lead-form-underline :is(input, [data-slot="select-trigger"]) {
+  height: 2.125rem;
+}
+
+.lead-form-underline textarea {
+  min-height: 3.25rem;
+}
+
+.lead-form-underline .react-international-phone-country-selector-button {
+  border: 0 !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.lead-form-underline :is(input, textarea, [data-slot="select-trigger"]):focus-visible,
+.lead-form-underline [data-slot="select-trigger"][data-state="open"] {
+  outline: none;
+  box-shadow: none;
+  border-bottom-color: var(--cta);
+}
